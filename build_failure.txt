@@ -1,0 +1,141 @@
+   Compiling deku-ctx v0.1.0 (/Users/edude03/code/deku-ctx)
+error[E0277]: the trait bound `Topic: DekuWriter<Endian>` is not satisfied
+  --> src/main.rs:40:13
+   |
+40 |     topics: CompactArray<Topic>,
+   |             ^^^^^^^^^^^^^^^^^^^ the trait `DekuWriter<Endian>` is not implemented for `Topic`
+   |
+   = note: implement by adding #[derive(DekuRead)] to `Topic`
+   = note: make sure the `ctx` sent into the function matches `Topic`'s `ctx`
+   = help: the following other types implement trait `DekuWriter<Ctx>`:
+             `&T` implements `DekuWriter<Ctx>`
+             `&[T]` implements `DekuWriter<Ctx>`
+             `()` implements `DekuWriter<Ctx>`
+             `(A, B)` implements `DekuWriter<Ctx>`
+             `(A, B, C)` implements `DekuWriter<Ctx>`
+             `(A, B, C, D)` implements `DekuWriter<Ctx>`
+             `(A, B, C, D, E)` implements `DekuWriter<Ctx>`
+             `(A, B, C, D, E, F)` implements `DekuWriter<Ctx>`
+           and 251 others
+note: required by a bound in `CompactArray`
+  --> src/main.rs:22:11
+   |
+19 | pub struct CompactArray<T>
+   |            ------------ required by a bound in this struct
+...
+22 |         + DekuWriter<deku::ctx::Endian>
+   |           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ required by this bound in `CompactArray`
+
+error[E0277]: the trait bound `Topic: DekuWriter<Endian>` is not satisfied
+  --> src/main.rs:40:5
+   |
+37 | #[derive(Debug, PartialEq, DekuRead)]
+   |          ----- in this derive macro expansion
+...
+40 |     topics: CompactArray<Topic>,
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^ the trait `DekuWriter<Endian>` is not implemented for `Topic`, which is required by `&CompactArray<Topic>: Debug`
+   |
+   = note: implement by adding #[derive(DekuRead)] to `Topic`
+   = note: make sure the `ctx` sent into the function matches `Topic`'s `ctx`
+   = help: the following other types implement trait `DekuWriter<Ctx>`:
+             `&T` implements `DekuWriter<Ctx>`
+             `&[T]` implements `DekuWriter<Ctx>`
+             `()` implements `DekuWriter<Ctx>`
+             `(A, B)` implements `DekuWriter<Ctx>`
+             `(A, B, C)` implements `DekuWriter<Ctx>`
+             `(A, B, C, D)` implements `DekuWriter<Ctx>`
+             `(A, B, C, D, E)` implements `DekuWriter<Ctx>`
+             `(A, B, C, D, E, F)` implements `DekuWriter<Ctx>`
+           and 251 others
+note: required for `CompactArray<Topic>` to implement `Debug`
+  --> src/main.rs:16:10
+   |
+16 | #[derive(Debug, PartialEq, DekuRead, DekuWrite)]
+   |          ^^^^^
+...
+22 |         + DekuWriter<deku::ctx::Endian>
+   |           ----------------------------- unsatisfied trait bound introduced in this `derive` macro
+   = note: 1 redundant requirement hidden
+   = note: required for `&CompactArray<Topic>` to implement `Debug`
+   = note: required for the cast from `&&CompactArray<Topic>` to `&dyn Debug`
+   = note: this error originates in the derive macro `Debug` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0369]: binary operation `==` cannot be applied to type `CompactArray<Topic>`
+   --> src/main.rs:40:5
+    |
+37  | #[derive(Debug, PartialEq, DekuRead)]
+    |                 --------- in this derive macro expansion
+...
+40  |     topics: CompactArray<Topic>,
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |
+note: an implementation of `DekuWriter<Endian>` might be missing for `Topic`
+   --> src/main.rs:33:1
+    |
+33  | pub struct Topic {
+    | ^^^^^^^^^^^^^^^^ must implement `DekuWriter<Endian>`
+note: the trait `DekuWriter` must be implemented
+   --> /Users/edude03/.cargo/registry/src/index.crates.io-6f17d22bba15001f/deku-0.19.1/src/lib.rs:487:1
+    |
+487 | pub trait DekuWriter<Ctx = ()> {
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    = note: this error originates in the derive macro `PartialEq` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0277]: the trait bound `Topic: DekuWriter<Endian>` is not satisfied
+  --> src/main.rs:37:28
+   |
+37 | #[derive(Debug, PartialEq, DekuRead)]
+   |                            ^^^^^^^^ the trait `DekuWriter<Endian>` is not implemented for `Topic`
+   |
+   = note: implement by adding #[derive(DekuRead)] to `Topic`
+   = note: make sure the `ctx` sent into the function matches `Topic`'s `ctx`
+   = help: the following other types implement trait `DekuWriter<Ctx>`:
+             `&T` implements `DekuWriter<Ctx>`
+             `&[T]` implements `DekuWriter<Ctx>`
+             `()` implements `DekuWriter<Ctx>`
+             `(A, B)` implements `DekuWriter<Ctx>`
+             `(A, B, C)` implements `DekuWriter<Ctx>`
+             `(A, B, C, D)` implements `DekuWriter<Ctx>`
+             `(A, B, C, D, E)` implements `DekuWriter<Ctx>`
+             `(A, B, C, D, E, F)` implements `DekuWriter<Ctx>`
+           and 251 others
+note: required by a bound in `CompactArray`
+  --> src/main.rs:22:11
+   |
+19 | pub struct CompactArray<T>
+   |            ------------ required by a bound in this struct
+...
+22 |         + DekuWriter<deku::ctx::Endian>
+   |           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ required by this bound in `CompactArray`
+   = note: this error originates in the derive macro `DekuRead` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0277]: the trait bound `Topic: DekuWriter<Endian>` is not satisfied
+  --> src/main.rs:37:28
+   |
+37 | #[derive(Debug, PartialEq, DekuRead)]
+   |                            ^^^^^^^^ the trait `DekuWriter<Endian>` is not implemented for `Topic`
+   |
+   = note: implement by adding #[derive(DekuRead)] to `Topic`
+   = note: make sure the `ctx` sent into the function matches `Topic`'s `ctx`
+   = help: the following other types implement trait `DekuWriter<Ctx>`:
+             `&T` implements `DekuWriter<Ctx>`
+             `&[T]` implements `DekuWriter<Ctx>`
+             `()` implements `DekuWriter<Ctx>`
+             `(A, B)` implements `DekuWriter<Ctx>`
+             `(A, B, C)` implements `DekuWriter<Ctx>`
+             `(A, B, C, D)` implements `DekuWriter<Ctx>`
+             `(A, B, C, D, E)` implements `DekuWriter<Ctx>`
+             `(A, B, C, D, E, F)` implements `DekuWriter<Ctx>`
+           and 251 others
+note: required by a bound in `CompactArray`
+  --> src/main.rs:22:11
+   |
+19 | pub struct CompactArray<T>
+   |            ------------ required by a bound in this struct
+...
+22 |         + DekuWriter<deku::ctx::Endian>
+   |           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ required by this bound in `CompactArray`
+
+Some errors have detailed explanations: E0277, E0369.
+For more information about an error, try `rustc --explain E0277`.
+error: could not compile `deku-ctx` (bin "deku-ctx") due to 6 previous errors
